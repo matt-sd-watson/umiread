@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="umiread",
-    version="1.1.0",
+    version="1.1.1",
     author="Matthew Watson",
     author_email="matt.sd.watson@gmail.com",
     description="Lightweight utility for 10x single cell assays",
