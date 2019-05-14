@@ -18,3 +18,37 @@ umiread requires the following packages:
 In PyCharm or another Python IDE (Python 3 or greater), installation can be completed as follows: 
 
     pip install umiread
+
+__Reading & Extracting from FASTQ files__
+
+umiread has the ability to parse one or more R1 FASTQ files from a 10x 3' single cell assay (any version). 
+
+For parsing a single FASTQ file: 
+
+    from umiread import extract_from_single
+    umi_data = extract_from_single("path/to/FASTQ file/~.fastq.gz")
+
+For parsing multiple FASTQ files contained within the same folder (i.e. multiple FASTQs corresponding to the same sample): 
+
+    from umiread import extract_from_folder
+    umi_data = extract_from_folder("path/to/FASTQ folder/")
+
+The parser will collect the 10bp UMI at the beginning of each R1 seqwuence contained within the targeted FATSQ files. Assigning the parsed sequences to an object such as umi_data will allow for the user to generate quality control metrics. 
+
+__Collecting Quality Control Metrics & Sequencing Errors__
+
+Having information about the total number of UMi sequences, unique UMI sequences, and nucleotide distribution can be useful for tracking the quality of wet lab workflows and overall data quality before doanstream application. umiread possesses a handful of functions that print these statistics to console. 
+
+For basic statistics such as total number of UMIs, unique UMIs, percentage of UMIs that are unique, and number of UMIs with a sequencing error, use the following command: 
+
+    from umiread import UMIStats
+    UMIStats(umi_data).show_statistics()
+
+For nucleotide distributions (i.e. the number of A, C, T, G in all unique UMIS): 
+
+    UMIStats(umi_data).base_distribution()
+
+For a graph of the positional distribution of sequencing errors in the UMI (denoted by "N" in the FASTQ file): 
+
+    UMIStats(umi_data).collect_seq_errors()
+    
