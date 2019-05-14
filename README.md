@@ -5,9 +5,13 @@ umiread is a lightweight utility that allows for seamless parsing of R1 FASTQ fi
 __Installation & Dependencies__
 
 umiread requires the following packages: 
+
     - pandas
+    
     - numpy
+    
     - matplotlib
+    
 
 In PyCharm or another Python IDE (Python 3 or greater), installation can be completed as follows: 
 
