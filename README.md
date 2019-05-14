@@ -33,7 +33,7 @@ For parsing multiple FASTQ files contained within the same folder (i.e. multiple
     from umiread import extract_from_folder
     umi_data = extract_from_folder("path/to/FASTQ folder/")
 
-The parser will collect the 10bp UMI at the beginning of each R1 sequence contained within the targeted FATSQ files. Assigning the parsed sequences to an object such as umi_data will allow for the user to generate quality control metrics. 
+The parser will collect the 10bp UMI at the beginning of each R1 sequence contained within the targeted FASTQ files. Assigning the parsed sequences to an object such as umi_data will allow for the user to generate quality control metrics. 
 
 __Collecting Quality Control Metrics & Sequencing Errors__
 
