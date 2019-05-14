@@ -42,7 +42,9 @@ Having information about the total number of UMI sequences, unique UMI sequences
 For basic statistics such as total number of UMIs, unique UMIs, percentage of UMIs that are unique, and the number of UMIs with a sequencing error, use the following command: 
 
     from umiread import UMIStats
-    UMIStats(umi_data).show_statistics()
+    UMIStats(umi_data).collect_qc_statistics()
+
+This function will output a simple csv with all aforementioned QC metrics. 
 
 For nucleotide distributions (i.e. the number of A, C, T, G in all unique UMIS): 
 
@@ -50,5 +52,5 @@ For nucleotide distributions (i.e. the number of A, C, T, G in all unique UMIS):
 
 For a graph of the positional distribution of sequencing errors in the UMI (denoted by "N" in the FASTQ file): 
 
-    UMIStats(umi_data).collect_seq_errors()
+    UMIStats(umi_data).show_seq_errors()
     
