@@ -4,6 +4,7 @@ import numpy as np
 import collections
 import pandas as pd
 import matplotlib.pyplot as plt
+import csv
 
 
 class UMIStats(object):
@@ -11,12 +12,12 @@ class UMIStats(object):
     def __init__(self, sequences):
         self.sequences = sequences
 
-    def show_statistics(self):
+    def collect_qc_statistics(self):
 
         """Input required: The output generated from collect_umi (a list of all UMIs contained
         within one or more FASTQ files)
         Output: a series of baseline statistics indicating total number of UMIs retrieved, unique UMIs and any UMI
-        sequences that contain sequencing errors (denoted by N in the read)
+        sequences that contain sequencing errors (denoted by N in the read) that are written to csv
         """
 
         array = np.array(self.sequences)
@@ -29,7 +30,15 @@ class UMIStats(object):
         print("Total Number of unique UMIS: {}".format(len(unique_umi)))
         print("The percentage of UMIs that are unique is: {0:.2f}%".format(size))
         print("Total Number of unique UMIS with a sequencing error: {}".format(len(unfiltered_umi)))
-        return array, unique_umi, filtered_umi, unfiltered_umi
+        stat_dict = {"total_umi_sequences": len(self.sequences), "unique_umi_sequences": len(unique_umi),
+                     "unique_umi_percentage": size, "unique_umi_count_with_seq_error": len(unfiltered_umi)}
+
+        with open("umiread_qc_statistics.csv", "w", newline='') as f:
+            writer = csv.writer(f)
+            writer.writerow(stat_dict.keys())
+            writer.writerow(stat_dict.values())
+
+        return array, unique_umi, filtered_umi, unfiltered_umi, size
 
     def base_distribution(self):
 
@@ -53,7 +62,7 @@ class UMIStats(object):
 
 # retrieve and plot positional information for each instance of N (undetermined base) in the UMI read (find index
 # position
-    def collect_seq_errors(self):
+    def show_seq_errors(self):
 
         """
         Input required: The output generated from collect_umi (a list of all UMIs contained
