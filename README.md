@@ -33,13 +33,13 @@ For parsing multiple FASTQ files contained within the same folder (i.e. multiple
     from umiread import extract_from_folder
     umi_data = extract_from_folder("path/to/FASTQ folder/")
 
-The parser will collect the 10bp UMI at the beginning of each R1 seqwuence contained within the targeted FATSQ files. Assigning the parsed sequences to an object such as umi_data will allow for the user to generate quality control metrics. 
+The parser will collect the 10bp UMI at the beginning of each R1 sequence contained within the targeted FATSQ files. Assigning the parsed sequences to an object such as umi_data will allow for the user to generate quality control metrics. 
 
 __Collecting Quality Control Metrics & Sequencing Errors__
 
-Having information about the total number of UMi sequences, unique UMI sequences, and nucleotide distribution can be useful for tracking the quality of wet lab workflows and overall data quality before doanstream application. umiread possesses a handful of functions that print these statistics to console. 
+Having information about the total number of UMI sequences, unique UMI sequences, and nucleotide distribution can be useful for tracking the quality of wet lab workflows and overall data quality before downstream applications and further data analysis. umiread possesses a handful of functions that can print these statistics to console. 
 
-For basic statistics such as total number of UMIs, unique UMIs, percentage of UMIs that are unique, and number of UMIs with a sequencing error, use the following command: 
+For basic statistics such as total number of UMIs, unique UMIs, percentage of UMIs that are unique, and the number of UMIs with a sequencing error, use the following command: 
 
     from umiread import UMIStats
     UMIStats(umi_data).show_statistics()
